@@ -10,9 +10,12 @@ function getRandomDoggo() {
 
 function displayRandomDoggo(responseJson) {
 	console.log(responseJson);
-	$('.results').append(
-		`<img src="${responseJson.message}" alt="Random Dog Breed">`
-		);
+	$('.display-results').remove();
+	$('.container').append(
+		`<section class="display-results">
+			<h2 class="results hidden">Here is your random Doggo!</h2>
+			<img src="${responseJson.message}" alt="Random Dog Breed">
+		</section>`);
 	$('.results').removeClass('hidden');
 }
 
