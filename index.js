@@ -1,21 +1,19 @@
 'use strict';
 
-const searchURL = 'https://dog.ceo/api/breed';
-
-function searchBreed() {
-	
-}
-
 function getRandomDoggo() {
-	fetch('https://dog.ceo/api/breed/hound/images/random')
+	let breed = $('#js-search-breed').val();
+	fetch(`https://dog.ceo/api/breed/${breed}/images/random`)
 	.then(response => response.json())
-	.then(responseJson => console.log(responseJson))
+	.then(responseJson => displayRandomDoggo(responseJson))
 	.catch(error => alert('Something went wrong. Try again later.'));
 }
 
-function displayRandomDoggo() {
-
-
+function displayRandomDoggo(responseJson) {
+	console.log(responseJson);
+	$('.results').append(
+		`<img src="${responseJson.message}" alt="Random Dog Breed">`
+		);
+	$('.results').removeClass('hidden');
 }
 
 function formSubmission() {
