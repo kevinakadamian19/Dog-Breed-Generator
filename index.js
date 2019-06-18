@@ -3,7 +3,12 @@
 function getRandomDoggo() {
 	let breed = $('#js-search-breed').val();
 	fetch(`https://dog.ceo/api/breed/${breed}/images/random`)
-	.then(response => response.json())
+	.then(response => {
+		if (response.ok) {
+			return response.json();
+		}
+		throw new Error(response.statusText);
+	})
 	.then(responseJson => displayRandomDoggo(responseJson))
 	.catch(error => alert('Something went wrong. Try again later.'));
 }
